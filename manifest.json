@@ -1,0 +1,17 @@
+{
+    "name": "Accessibility Extension",
+    "description": "Enables Text-to-Speech and Speech-to-Text for all websites",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "contextMenus",
+        "storage",
+        "tts",
+        "ttsEngine"
+    ],
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "logo.png"
+    }
+}
