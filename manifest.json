@@ -1,27 +1,71 @@
 {
-    "name": "Accessibility Extension",
-    "description": "Enables Text-to-Speech and Speech-to-Text for all websites",
-    "version": "1.0",
-    "manifest_version": 3,
-    "permissions": [
-        "activeTab",
-        "contextMenus",
-        "storage",
-        "tts",
-        "ttsEngine",
-        "tabs"
+  "manifest_version": 2,
+
+  "name": "dellprojectxyz test",
+  "short_name": "test",
+  "description": "testing",
+  "version": "1.48.0",
+  "default_locale": "en",
+
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html?isPopup=1"
+  },
+  "icons": {
+    "16": "img/icon-16.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "identity",
+    "storage",
+    "tts",
+    "ttsEngine",
+    "https://translate.google.com/"
+  ],
+  "optional_permissions": [
+    "webRequest",
+    "webNavigation",
+    "http://*/",
+    "https://*/"
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "background": {
+    "scripts": [
+      "js/defaults.js",
+      "js/messaging.js",
+      "js/google-translate.js",
+      "js/tts-engines.js",
+      "js/speech.js",
+      "js/document.js",
+      "js/events.js"
     ],
-    "action": {
-        "default_popup": "index.html",
-        "default_icon": "logo.png"
+    "persistent": false
+  },
+  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": false
+  },
+  "commands": {
+    "play": {
+      "suggested_key": {"default": "Alt+P"},
+      "description": "play/pause"
     },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["./tts/jquery.js", "./tts/listen.js"]
-        }
-    ],
-    "background": {
-        "service_worker": "./tts/back.js"
+    "stop": {
+      "suggested_key": {"default": "Alt+O"},
+      "description": "stop"
+    },
+    "forward": {
+      "suggested_key": {"default": "Alt+Period"},
+      "description": "forward"
+    },
+    "rewind": {
+      "suggested_key": {"default": "Alt+Comma"},
+      "description": "rewind"
     }
+  }
 }
