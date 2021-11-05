@@ -8,10 +8,20 @@
         "contextMenus",
         "storage",
         "tts",
-        "ttsEngine"
+        "ttsEngine",
+        "tabs"
     ],
     "action": {
         "default_popup": "index.html",
         "default_icon": "logo.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["./tts/jquery.js", "./tts/listen.js"]
+        }
+    ],
+    "background": {
+        "service_worker": "./tts/back.js"
     }
 }
