@@ -342,7 +342,6 @@ function GoogleWavenetTtsEngine() {
   this.getVoices = function() {
     return getSettings(["wavenetVoices"])
       .then(function(items) {
-        if (!items.wavenetVoices || Date.now()-items.wavenetVoices[0].ts > 24*3600*1000) updateVoices();
         return items.wavenetVoices || voices;
       })
   }
@@ -354,14 +353,7 @@ function GoogleWavenetTtsEngine() {
         })
       })
   }
-  function updateVoices() {
-    ajaxGet(config.serviceUrl + "/read-aloud/list-voices/google")
-      .then(JSON.parse)
-      .then(function(list) {
-        list[0].ts = Date.now();
-        updateSettings({wavenetVoices: list});
-      })
-  }
+
   function getAudioUrl(text, voice, pitch) {
     assert(text && voice && pitch != null);
     var matches = voice.voiceName.match(/^Google(\w+) .* \((\w+)\)$/);
